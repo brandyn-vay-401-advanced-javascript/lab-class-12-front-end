@@ -14,11 +14,11 @@
 
         <script>
 
-          let googleURL = "https://accounts.google.com/o/oauth2/v2/auth";
+          let wordpressURL = "https://public-api.wordpress.com/oauth2/authorize";
 
           let options = {
-            client_id:'YOUR-GOOGLE-CLIENT-ID',
-            redirect_uri: 'YOUR-SERVER-URL/oauth',
+            client_id:'66493',
+            redirect_uri: 'https://brad.school.blog/login/callback/oauth',
             scope: 'email openid profile',
             prompt: 'consent',
             response_type: 'code'
@@ -27,10 +27,12 @@
           let QueryString = Object.keys(options).map( (key,i) => {
             return `${key}=` + encodeURIComponent(options[key]);
           }).join("&");
+          console.log(QueryString);
+          //https://public-api.wordpress.com/oauth2/authorize?client_id=66493&redirect_uri=https%3A%2F%2Fbrad.school.blog%2Flogin%2Fcallback&scope=email%20openid%20profile&prompt=consent&response_type=code
+          let authURL = `${wordpressURL}?${QueryString}`;
+          console.log(authURL);
 
-          let authURL = `${googleURL}?${QueryString}`;
-
-          $('#oauth').append(`<a href="${authURL}">Login With Google</a>`);
+          $('#oauth').append(`<a href="${authURL}">Login With Brad</a>`);
 
         </script>
 
